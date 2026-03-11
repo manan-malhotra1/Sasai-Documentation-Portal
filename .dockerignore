@@ -1,0 +1,28 @@
+# Dependencies (reinstalled in container)
+node_modules
+
+# Build output
+.next
+out
+build
+
+# Git and IDE
+.git
+.gitignore
+.cursor
+*.md
+!README.md
+
+# Env and secrets
+.env
+.env.*
+*.local
+
+# Misc
+.DS_Store
+coverage
+*.log
+.source
+*.tsbuildinfo
+
+# Keep package-lock.json for npm ci

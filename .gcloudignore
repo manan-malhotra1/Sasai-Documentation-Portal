@@ -1,0 +1,31 @@
+# When .gcloudignore exists, gcloud uses it instead of .gitignore for deploy --source.
+# We must NOT exclude package-lock.json so Cloud Build can run npm ci.
+
+# Dependencies (reinstalled in container)
+node_modules
+
+# Build output
+.next
+out
+build
+
+# Git and IDE
+.git
+.gitignore
+.cursor
+.DS_Store
+
+# Env and secrets
+.env
+.env.*
+.env*.local
+
+# Misc
+coverage
+*.log
+.source
+*.tsbuildinfo
+.vercel
+next-env.d.ts
+
+# Keep: package.json, package-lock.json, and all source files

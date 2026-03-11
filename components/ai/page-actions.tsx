@@ -39,22 +39,22 @@ export function LLMCopyButton({
     }
   });
 
-  // return (
-  //   <button
-  //     disabled={isLoading}
-  //     className={cn(
-  //       buttonVariants({
-  //         color: 'secondary',
-  //         size: 'sm',
-  //         className: 'gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground',
-  //       }),
-  //     )}
-  //     onClick={onClick}
-  //   >
-  //     {checked ? <Check /> : <Copy />}
-  //     Copy Markdown
-  //   </button>
-  // );
+  return (
+    <button
+      disabled={isLoading}
+      className={cn(
+        buttonVariants({
+          color: 'secondary',
+          size: 'sm',
+          className: 'gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground',
+        }),
+      )}
+      onClick={onClick}
+    >
+      {checked ? <Check /> : <Copy />}
+      Copy Markdown
+    </button>
+  );
 }
 
 export function ViewOptions({
@@ -214,35 +214,35 @@ export function ViewOptions({
     ];
   }, [githubUrl, markdownUrl]);
 
-  // return (
-  //   <Popover>
-  //     <PopoverTrigger
-  //       className={cn(
-  //         buttonVariants({
-  //           color: 'secondary',
-  //           size: 'sm',
-  //           className: 'gap-2',
-  //         }),
-  //       )}
-  //     >
-  //       Open
-  //       <ChevronDown className="size-3.5 text-fd-muted-foreground" />
-  //     </PopoverTrigger>
-  //     <PopoverContent className="flex flex-col">
-  //       {items.map((item) => (
-  //         <a
-  //           key={item.href}
-  //           href={item.href}
-  //           rel="noreferrer noopener"
-  //           target="_blank"
-  //           className="text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground hover:bg-fd-accent [&_svg]:size-4"
-  //         >
-  //           {item.icon}
-  //           {item.title}
-  //           <ExternalLinkIcon className="text-fd-muted-foreground size-3.5 ms-auto" />
-  //         </a>
-  //       ))}
-  //     </PopoverContent>
-  //   </Popover>
-  // );
+  return (
+    <Popover>
+      <PopoverTrigger
+        className={cn(
+          buttonVariants({
+            color: 'secondary',
+            size: 'sm',
+            className: 'gap-2',
+          }),
+        )}
+      >
+        Open
+        <ChevronDown className="size-3.5 text-fd-muted-foreground" />
+      </PopoverTrigger>
+      <PopoverContent className="flex flex-col">
+        {items.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            rel="noreferrer noopener"
+            target="_blank"
+            className="text-sm p-2 rounded-lg inline-flex items-center gap-2 hover:text-fd-accent-foreground hover:bg-fd-accent [&_svg]:size-4"
+          >
+            {item.icon}
+            {item.title}
+            <ExternalLinkIcon className="text-fd-muted-foreground size-3.5 ms-auto" />
+          </a>
+        ))}
+      </PopoverContent>
+    </Popover>
+  );
 }
