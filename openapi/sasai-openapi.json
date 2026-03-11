@@ -71,6 +71,112 @@
           }
         },
         "required": ["id", "status", "amount", "currency"]
+      },
+      "CreatePolicyRequest": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string"
+          },
+          "productCode": {
+            "type": "string",
+            "example": "travel-basic"
+          },
+          "premium": {
+            "type": "number",
+            "example": 35
+          }
+        },
+        "required": ["customerId", "productCode", "premium"]
+      },
+      "Policy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "pol_12345"
+          },
+          "status": {
+            "type": "string",
+            "example": "active"
+          },
+          "premium": {
+            "type": "number",
+            "example": 35
+          }
+        },
+        "required": ["id", "status", "premium"]
+      },
+      "CreateLoanApplicationRequest": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "example": 500
+          },
+          "termMonths": {
+            "type": "integer",
+            "example": 12
+          }
+        },
+        "required": ["customerId", "amount", "termMonths"]
+      },
+      "LoanApplication": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "loan_12345"
+          },
+          "status": {
+            "type": "string",
+            "example": "under_review"
+          },
+          "amount": {
+            "type": "number",
+            "example": 500
+          }
+        },
+        "required": ["id", "status", "amount"]
+      },
+      "CreateRouteRequest": {
+        "type": "object",
+        "properties": {
+          "partnerCode": {
+            "type": "string",
+            "example": "bank_xyz"
+          },
+          "channel": {
+            "type": "string",
+            "example": "bank_transfer"
+          },
+          "country": {
+            "type": "string",
+            "example": "ZW"
+          }
+        },
+        "required": ["partnerCode", "channel", "country"]
+      },
+      "Route": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "route_12345"
+          },
+          "status": {
+            "type": "string",
+            "example": "active"
+          },
+          "partnerCode": {
+            "type": "string",
+            "example": "bank_xyz"
+          }
+        },
+        "required": ["id", "status", "partnerCode"]
       }
     }
   },
@@ -148,6 +254,177 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/insuresense/policies": {
+      "post": {
+        "summary": "Create policy",
+        "description": "Creates a new insurance policy for the supplied customer and product.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePolicyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Policy created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/insuresense/policies/{policyId}": {
+      "get": {
+        "summary": "Get policy",
+        "description": "Fetches a single policy by identifier.",
+        "parameters": [
+          {
+            "name": "policyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique policy identifier."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Policy details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Policy"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/creditsense/loan-applications": {
+      "post": {
+        "summary": "Create loan application",
+        "description": "Creates a new loan application for scoring and credit review.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLoanApplicationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Loan application created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoanApplication"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/creditsense/loan-applications/{applicationId}": {
+      "get": {
+        "summary": "Get loan application",
+        "description": "Fetches a single loan application by identifier.",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique loan application identifier."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Loan application details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoanApplication"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/meshsense/routes": {
+      "post": {
+        "summary": "Create route",
+        "description": "Creates a new partner route for MeshSense orchestration.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRouteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Route created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Route"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/meshsense/routes/{routeId}": {
+      "get": {
+        "summary": "Get route",
+        "description": "Fetches a single route by identifier.",
+        "parameters": [
+          {
+            "name": "routeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique route identifier."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Route details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Route"
                 }
               }
             }

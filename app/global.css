@@ -132,8 +132,58 @@ body {
 .sasai-page-description {
   margin-top: 0.75rem;
   max-width: 64ch;
-  color: var(--sasai-muted);
-  font-size: 1.05rem;
+}
+
+.sasai-docs-title {
+  font-family: inherit;
+  font-size: 40px;
+  line-height: 52px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: #333333;
+}
+
+.sasai-docs-description {
+  font-family: inherit;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #555555;
+}
+
+.sasai-docs-body [data-card] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--sasai-border);
+  border-radius: 1.25rem;
+  background: var(--sasai-surface);
+  box-shadow: 0 24px 48px -38px rgba(15, 23, 42, 0.42);
+}
+
+.sasai-docs-body [data-card] h3 {
+  margin: 0;
+  display: block;
+  font-family: inherit;
+  font-size: 28px;
+  line-height: 40px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: #333333;
+}
+
+.sasai-docs-body [data-card] p {
+  margin: 0 0 0.75rem;
+  display: block;
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #555555;
 }
 
 .sasai-breadcrumb {
@@ -216,63 +266,41 @@ body {
 .sasai-home-title {
   margin-top: 1rem;
   max-width: 12ch;
-  font-size: clamp(2.6rem, 5vw, 4.75rem);
-  line-height: 0.98;
-  letter-spacing: -0.05em;
-  font-weight: 800;
+  font-family: inherit;
+  font-size: 40px;
+  line-height: 52px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: #333333;
+}
+
+.sasai-home-title-products {
+  max-width: none;
 }
 
 .sasai-home-copy {
   max-width: 62ch;
   margin-top: 1rem;
-  color: var(--sasai-muted);
-  font-size: 1.05rem;
-  line-height: 1.75;
-}
-
-.sasai-home-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.sasai-home-primary,
-.sasai-home-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
-}
-
-.sasai-home-primary {
-  background: var(--sasai-brand);
-  color: white;
-  box-shadow: 0 18px 36px -24px rgba(20, 115, 230, 0.75);
-}
-
-.sasai-home-secondary {
-  border: 1px solid var(--sasai-border);
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--sasai-text);
-}
-
-.sasai-home-primary:hover,
-.sasai-home-secondary:hover {
-  transform: translateY(-1px);
+  font-family: inherit;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: #555555;
 }
 
 .sasai-home-grid {
   display: grid;
   gap: 1rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .sasai-home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
   padding: 1.25rem;
   border: 1px solid var(--sasai-border);
   border-radius: 1.25rem;
@@ -281,14 +309,144 @@ body {
 }
 
 .sasai-home-card-title {
-  font-size: 1rem;
-  font-weight: 700;
+  display: block;
+  font-family: inherit;
+  font-size: 28px;
+  line-height: 40px;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: #333333;
 }
 
 .sasai-home-card-copy {
-  margin-top: 0.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0;
+  font-weight: 400;
   color: var(--sasai-muted);
-  line-height: 1.65;
+  color: #555555;
+}
+
+.sasai-home-card-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--sasai-brand);
+  transition: opacity 150ms ease;
+}
+
+.sasai-home-card-link:hover {
+  opacity: 0.8;
+}
+
+.sasai-api-reference-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.sasai-api-docs-page {
+  max-width: none;
+}
+
+.sasai-api-shell {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.sasai-api-side-nav {
+  position: sticky;
+  top: calc(var(--sasai-top-nav-height) + 1.5rem);
+  padding: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 1.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 28px 60px -42px rgba(15, 23, 42, 0.35);
+}
+
+.sasai-api-side-nav-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--sasai-border);
+}
+
+.sasai-api-side-nav-title {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #333333;
+}
+
+.sasai-api-side-nav-copy {
+  margin: 0.6rem 0 0;
+  max-width: 18ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555555;
+}
+
+.sasai-api-side-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.sasai-api-side-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 1.35rem;
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.sasai-api-side-nav-link:hover {
+  background: rgba(20, 115, 230, 0.05);
+  border-color: rgba(20, 115, 230, 0.12);
+}
+
+.sasai-api-side-nav-link-active {
+  background: rgba(20, 115, 230, 0.08);
+  border-color: rgba(20, 115, 230, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(20, 115, 230, 0.06);
+}
+
+.sasai-api-side-nav-link-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.sasai-api-side-nav-link-method {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sasai-brand);
+}
+
+.sasai-api-reference-grid .sasai-home-card {
+  text-decoration: none;
+}
+
+.sasai-api-reference-method {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(20, 115, 230, 0.1);
+  color: var(--sasai-brand);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 @media (min-width: 768px) {
@@ -297,6 +455,14 @@ body {
   }
 
   .sasai-home-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sasai-api-shell {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+
+  .sasai-api-reference-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

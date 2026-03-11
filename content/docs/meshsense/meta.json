@@ -1,5 +1,5 @@
 {
-  "title": "RemitSense",
+  "title": "MeshSense",
   "pages": ["overview","architecture", "integration-guide" , "webhooks","api-reference", "error-codes"]
 }
 

@@ -1,24 +1,25 @@
 import { MessageCircleIcon } from 'lucide-react';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import { AISearch, AISearchPanel, AISearchTrigger } from '@/components/search';
 import { AuthProvider } from '@/components/auth-provider';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/cn';
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
 });
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html lang="en" className={poppins.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <AuthProvider>
           <AISearch>
             <AISearchPanel />
-            {/* <AISearchTrigger
+            <AISearchTrigger
               position="float"
               className={cn(
                 buttonVariants({
@@ -30,7 +31,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
             >
               <MessageCircleIcon className="size-4" />
               Ask Sasai
-            </AISearchTrigger> */}
+            </AISearchTrigger>
             <RootProvider>{children}</RootProvider>
           </AISearch>
         </AuthProvider>

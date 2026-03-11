@@ -70,8 +70,10 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
             );
           })}
         </nav>
-        <DocsTitle>{page.data.title}</DocsTitle>
-        <DocsDescription className="sasai-page-description">{page.data.description}</DocsDescription>
+        <DocsTitle className="sasai-docs-title">{page.data.title}</DocsTitle>
+        <DocsDescription className="sasai-page-description sasai-docs-description">
+          {page.data.description}
+        </DocsDescription>
         <div className="sasai-page-actions">
           <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
           <ViewOptions
@@ -84,7 +86,7 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
           />
         </div>
       </div>
-      <DocsBody>
+      <DocsBody className="sasai-docs-body">
         <MDX
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths

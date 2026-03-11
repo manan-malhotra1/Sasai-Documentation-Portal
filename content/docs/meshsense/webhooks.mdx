@@ -1,0 +1,12 @@
+---
+title: Webhook
+description: Process MeshSense partner and transaction events reliably across external integrations.
+---
+
+## Webhook handling checklist
+
+1. Receive partner and transaction events on a dedicated backend endpoint.
+2. Verify authenticity and partner context before processing.
+3. Return success quickly and move longer processing off the request thread.
+4. Store event identifiers for replay and partner reconciliation.
+

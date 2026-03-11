@@ -1,0 +1,11 @@
+---
+title: Architecture
+description: Align your services and event flows with the InsureSense integration model.
+---
+
+## Recommended shape
+
+- Client apps call your backend, not Sasai directly.
+- Your backend handles authentication, policy actions, and premium orchestration.
+- Webhook consumers process asynchronous updates for policy and claims events.
+
