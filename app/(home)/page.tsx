@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '@/app/images/logo.png';
+import { SASAI_SQUARE_LOGO_URL } from '@/lib/sasai-branding';
 
 const productCards = [
   {
@@ -32,7 +32,14 @@ export default function HomePage() {
       <section className="sasai-home-hero">
         <div>
           <div className="sasai-home-brand">
-            <Image src={logo} alt="Sasai logo" className="h-10 w-auto" priority />
+            <Image
+              src={SASAI_SQUARE_LOGO_URL}
+              alt="Sasai logo"
+              className="h-10 w-auto"
+              width={40}
+              height={40}
+              priority
+            />
             <span className="sasai-home-brand-text">Sasai Docs</span>
           </div>
           <h1 className="sasai-home-title sasai-home-title-products">Sasai Products</h1>

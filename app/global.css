@@ -4,12 +4,10 @@
 @import 'fumadocs-openapi/css/preset.css';
 
 :root {
-  --sasai-brand: #1473e6;
-  --sasai-brand-soft: #eff6ff;
-  --sasai-border: rgba(15, 23, 42, 0.08);
-  --sasai-text: #0f172a;
-  --sasai-muted: #475569;
-  --sasai-surface: rgba(255, 255, 255, 0.88);
+  --sasai-brand: var(--sasai-primary);
+  --sasai-brand-soft: var(--sasai-light-blue-50);
+  --sasai-text: var(--sasai-text-900);
+  --sasai-muted: var(--sasai-text-700);
 }
 
 html {
@@ -17,21 +15,31 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at top, rgba(20, 115, 230, 0.08), transparent 28%),
-    linear-gradient(180deg, #f8fafc 0%, #ffffff 32%, #f8fafc 100%);
+  background: var(--sasai-bg);
   color: var(--sasai-text);
 }
 
+/* Hide scrollbars while keeping scroll behavior enabled. */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 .sasai-docs-layout {
-  --sasai-top-nav-height: 4.5rem;
+  --sasai-top-nav-height: var(--sasai-nav-height);
   --fd-docs-row-1: var(--sasai-top-nav-height);
   width: min(100%, 1440px);
   margin-inline: auto;
 }
 
 .sasai-docs-shell {
-  --sasai-top-nav-height: 4.5rem;
+  --sasai-top-nav-height: var(--sasai-nav-height);
 }
 
 .sasai-docs-top-nav {
@@ -40,18 +48,37 @@ body {
   z-index: 40;
   height: var(--sasai-top-nav-height);
   border-bottom: 1px solid var(--sasai-border);
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--sasai-nav-bg-before);
   backdrop-filter: blur(18px);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.sasai-docs-top-nav-scrolled {
+  background: var(--sasai-nav-bg-after);
+  box-shadow: var(--sasai-nav-shadow);
 }
 
 .sasai-docs-top-nav-inner {
-  width: min(100%, 1440px);
+  width: 100%;
+  max-width: var(--sasai-nav-max-width);
   height: 100%;
   margin-inline: auto;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  padding-inline: 1.25rem;
+  gap: var(--sasai-nav-gap);
+  padding-inline: var(--sasai-nav-padding-x-web);
+}
+
+@media (max-width: 1024px) {
+  .sasai-docs-top-nav-inner {
+    padding-inline: var(--sasai-nav-padding-x-tablet);
+  }
+}
+
+@media (max-width: 640px) {
+  .sasai-docs-top-nav-inner {
+    padding-inline: var(--sasai-nav-padding-x-mobile);
+  }
 }
 
 .sasai-docs-top-nav-brand {
@@ -59,29 +86,137 @@ body {
   align-items: center;
   gap: 0.75rem;
   min-width: 0;
+  text-decoration: none;
+}
+
+.sasai-docs-top-nav-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--sasai-nav-button-border-radius);
+  padding: 0;
+  background: transparent;
+  color: var(--sasai-nav-link-color-before);
+  transition: filter 150ms ease, background-color 150ms ease;
+}
+
+.sasai-docs-top-nav-back:hover {
+  background: color-mix(in srgb, var(--sasai-nav-bg-before) 88%, var(--sasai-primary) 12%);
+  filter: brightness(0.98);
+}
+
+.sasai-docs-top-nav-title {
+  font-family: var(--sasai-nav-link-font);
+  font-size: var(--sasai-nav-link-size);
+  line-height: var(--sasai-nav-link-line-height);
+  font-weight: 600;
+  letter-spacing: var(--sasai-nav-link-letter-spacing);
+  color: var(--sasai-nav-link-color-before);
+}
+
+.sasai-docs-top-nav-subtitle {
+  font-family: var(--sasai-font-sans);
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--sasai-nav-link-color-before);
 }
 
 .sasai-docs-top-nav-links {
   display: none;
   align-items: center;
-  gap: 1.25rem;
+  gap: var(--sasai-nav-gap);
 }
 
 .sasai-docs-top-nav-link {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--sasai-muted);
-  transition: color 150ms ease;
+  font-family: var(--sasai-nav-link-font);
+  font-size: var(--sasai-nav-link-size);
+  line-height: var(--sasai-nav-link-line-height);
+  font-weight: var(--sasai-nav-link-weight);
+  letter-spacing: var(--sasai-nav-link-letter-spacing);
+  color: var(--sasai-nav-link-color-before);
+  transition: color 150ms ease, opacity 150ms ease;
 }
 
 .sasai-docs-top-nav-link:hover {
-  color: var(--sasai-text);
+  opacity: 0.85;
 }
 
 .sasai-docs-top-nav-actions {
   margin-left: auto;
   display: flex;
   align-items: center;
+}
+
+.sasai-auth-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sasai-auth-nav-link {
+  font-family: var(--sasai-nav-link-font);
+  font-size: var(--sasai-nav-link-size);
+  line-height: var(--sasai-nav-link-line-height);
+  font-weight: var(--sasai-nav-link-weight);
+  letter-spacing: var(--sasai-nav-link-letter-spacing);
+  color: var(--sasai-nav-link-color-before);
+  transition: opacity 150ms ease;
+}
+
+.sasai-auth-nav-link:hover {
+  opacity: 0.85;
+}
+
+.sasai-auth-nav-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sasai-nav-button-padding-y) var(--sasai-nav-button-padding-x);
+  border-radius: var(--sasai-nav-button-border-radius);
+  background: var(--sasai-nav-button-bg-before);
+  color: var(--sasai-nav-button-color-before);
+  font-family: var(--sasai-nav-link-font);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  transition: filter 150ms ease;
+}
+
+.sasai-auth-nav-button:hover {
+  filter: brightness(0.95);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-docs-top-nav-back {
+  color: var(--sasai-nav-link-color-after);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-docs-top-nav-back:hover {
+  background: color-mix(in srgb, var(--sasai-nav-bg-after) 88%, var(--sasai-primary) 12%);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-docs-top-nav-title {
+  color: var(--sasai-nav-link-color-after);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-docs-top-nav-subtitle {
+  color: var(--sasai-text-600);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-docs-top-nav-link {
+  color: var(--sasai-nav-link-color-after);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-auth-nav-link {
+  color: var(--sasai-nav-link-color-after);
+}
+
+.sasai-docs-top-nav-scrolled .sasai-auth-nav-button {
+  background: var(--sasai-nav-button-bg-after);
+  color: var(--sasai-nav-button-color-after);
 }
 
 .sasai-docs-sidebar {

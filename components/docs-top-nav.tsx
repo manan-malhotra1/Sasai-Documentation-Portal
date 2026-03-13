@@ -1,14 +1,33 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { AuthNav } from '@/components/auth-nav';
-import logo from '@/app/images/logo.png';
+import {
+  SASAI_SQUARE_LOGO_URL,
+  SASAI_SQUARE_TRANSPARENT_LOGO_URL,
+} from '@/lib/sasai-branding';
 
 export function DocsTopNav() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const productLabel = (() => {
     if (pathname.startsWith('/docs/remitsense')) return 'RemitSense';
     if (pathname.startsWith('/docs/insuresense')) return 'InsureSense';
@@ -22,23 +41,30 @@ export function DocsTopNav() {
     || pathname.startsWith('/docs/meshsense');
 
   return (
-    <header className="sasai-docs-top-nav">
+    <header className={`sasai-docs-top-nav${isScrolled ? ' sasai-docs-top-nav-scrolled' : ''}`}>
       <div className="sasai-docs-top-nav-inner">
         {showBackArrow ? (
           <Link
             href="/"
             aria-label="Back to Sasai Products"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition-colors hover:bg-slate-50 hover:text-slate-950"
+            className="sasai-docs-top-nav-back"
           >
             <ArrowLeft className="size-4" />
           </Link>
         ) : null}
 
         <Link href="/docs" className="sasai-docs-top-nav-brand">
-          <Image src={logo} alt="Sasai logo" className="h-10 w-auto" priority />
+          <Image
+            src={isScrolled ? SASAI_SQUARE_LOGO_URL : SASAI_SQUARE_TRANSPARENT_LOGO_URL}
+            alt="Sasai logo"
+            className="h-10 w-auto"
+            width={40}
+            height={40}
+            priority
+          />
           <span className="flex flex-col leading-none">
-            <span className="text-sm font-semibold text-slate-950">Sasai Docs</span>
-            <span className="text-xs font-medium text-slate-500">{productLabel}</span>
+            <span className="sasai-docs-top-nav-title">Sasai Docs</span>
+            <span className="sasai-docs-top-nav-subtitle">{productLabel}</span>
           </span>
         </Link>
 

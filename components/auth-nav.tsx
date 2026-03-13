@@ -12,7 +12,7 @@ export function AuthNav() {
     return (
       <Link
         href="/login"
-        className="inline-flex min-h-10 items-center justify-center rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+        className="sasai-auth-nav-button"
       >
         Login
       </Link>
@@ -20,10 +20,10 @@ export function AuthNav() {
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="sasai-auth-nav">
       <Link
         href="/docs/api-documentation"
-        className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-950"
+        className="sasai-auth-nav-link"
       >
         API References
       </Link>
@@ -34,7 +34,7 @@ export function AuthNav() {
           router.push('/docs');
           router.refresh();
         }}
-        className="inline-flex min-h-10 items-center justify-center rounded-full border border-slate-200 bg-white px-4 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+        className="sasai-auth-nav-button"
       >
         Logout
       </button>
